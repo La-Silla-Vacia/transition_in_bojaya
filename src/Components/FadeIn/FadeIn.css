@@ -1,0 +1,10 @@
+.container {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: 2.5s;
+}
+
+.show {
+  opacity: 1;
+  transform: scale(1);
+}

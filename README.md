@@ -32,7 +32,8 @@ To embed on a webpage use this code:
 <!-- START OF OUR INTERACTIVE -->
 <script type="text/javascript">
 window.transition_in_bojaya_data = {
-  "name": "transition_in_bojaya"
+  "name": "transition_in_bojaya",
+  "dataUri": "https://api.fieldbook.com/v1/5910c2fc6f6fbc0300526996/pages"
 }
 </script>
 <div class="lsv-interactive" id="transition_in_bojaya">

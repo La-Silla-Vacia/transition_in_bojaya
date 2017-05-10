@@ -1,0 +1,54 @@
+.container {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+
+  & h1,
+  & h2,
+  & h3,
+  & h4 {
+    font-family: map(fonts, family-serif);
+  }
+}
+
+.background,
+.inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.background {
+  opacity: .7;
+
+  &__animated {
+    animation: zoom 30s infinite alternate;
+    transform-origin: left bottom;
+  }
+}
+
+@keyframes zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}
+
+.inner {
+  color: #fff;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+}
