@@ -10,7 +10,9 @@ export default class ChapterMenu extends Component {
 
     this.state = {
       show: false
-    }
+    };
+
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -19,13 +21,19 @@ export default class ChapterMenu extends Component {
     }, 1000);
   }
 
+  handleClick(id, e) {
+    e.preventDefault();
+    const { openMenuItem } = this.props;
+    openMenuItem(id);
+  }
+
   getItems() {
     const { items } = this.props;
     return items.map((item, index) => {
       const number = index + 1;
       const { title, id } = item;
       return (
-        <li className={s.item}>
+        <li className={s.item} onClick={this.handleClick.bind(this, id)}>
           <span className={s.number}>0{number}</span>
           <a href={`#page-${id}`} className={s.link}>{title}</a>
         </li>

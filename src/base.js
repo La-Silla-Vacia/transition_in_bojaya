@@ -17,7 +17,11 @@ export default class Base extends Component {
       height: 600
     };
 
+    this.pages = [];
+
     this.updateDimensions = this.updateDimensions.bind(this);
+    this.scroll = this.scroll.bind(this);
+    this.goToPage = this.goToPage.bind(this);
   }
 
   componentWillMount() {
@@ -36,10 +40,12 @@ export default class Base extends Component {
   }
 
   scroll(event) {
-    event.preventDefault();
-    const element = document.querySelector('#scrollview');
-    element.scrollLeft += event.deltaY;
-    element.scrollLeft += event.deltaX;
+    if (this.pagesRoot) {
+      event.preventDefault();
+      const element = this.pagesRoot;
+      element.scrollLeft += event.deltaY;
+      element.scrollLeft += event.deltaX;
+    }
   }
 
   updateDimensions() {
@@ -113,9 +119,29 @@ export default class Base extends Component {
       const { id } = page;
 
       return (
-        <MainIntro {...page} key={id} />
+        <MainIntro ref={(ref) => this.pages[id] = ref} {...page} key={id} />
       )
     });
+  }
+
+  goToPage(id) {
+    // Check if the page exists
+    const pageRef = this.pages[id];
+    if (pageRef) {
+      const element = pageRef.base;
+      const scrollOffset = element.getBoundingClientRect().left;
+
+      let value = -1;
+      if (scrollOffset > 0) {
+        value = 1;
+      }
+
+      for (let i = 0; i < Math.abs(scrollOffset); i++) {
+        setTimeout(() => {
+          this.pagesRoot.scrollLeft += value;
+        }, 0.5 * i);
+      }
+    }
   }
 
   render(props, state) {
@@ -128,10 +154,10 @@ export default class Base extends Component {
 
     return (
       <div className={s.container} style={style}>
-        <div id="scrollview" onWheel={this.scroll} className={s.pages}>
+        <div ref={(ref) => this.pagesRoot = ref} onWheel={this.scroll} className={s.pages}>
           {pages}
         </div>
-        <ChapterMenu items={menuItems} />
+        <ChapterMenu items={menuItems} openMenuItem={this.goToPage} />
       </div>
     )
   }
