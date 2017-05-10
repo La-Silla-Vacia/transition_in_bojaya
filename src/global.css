@@ -117,21 +117,23 @@ html body.admin-menu {
   }
 }
 
-#header {
-  transition: 1s;
-}
+@media screen and (min-width: 992px) {
+  #header {
+    transition: 1s;
+  }
 
-#header .navbar-header {
-  transition: 1s, height 1s 2s;
-  overflow: hidden;
+  #header .navbar-header {
+    transition: 1s, height 1s 2s;
+    overflow: hidden;
 
-}
+  }
 
-#header.header--compact .navbar-header {
-  transform: translateY(-100%);
-  opacity: 0;
-}
+  #header.header--compact .navbar-header {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 
-#header.header--compact {
-  margin-top: -88px;
+  #header.header--compact {
+    margin-top: -88px;
+  }
 }

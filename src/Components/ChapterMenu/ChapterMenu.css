@@ -42,15 +42,12 @@
     transition: width .25s;
   }
 
-  &:hover {
+  &:hover,
+  &.current {
     &::after {
       width: calc(100% - 2em);
     }
   }
-}
-
-.current {
-  background: red;
 }
 
 .number {

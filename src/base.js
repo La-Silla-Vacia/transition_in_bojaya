@@ -1,6 +1,7 @@
 import { h, render, Component } from 'preact';
 
 import MainIntro from './Pages/MainIntro';
+import ChapterIntro from './Pages/ChapterIntro';
 import ChapterMenu from './Components/ChapterMenu';
 
 import s from './base.css';
@@ -156,6 +157,8 @@ export default class Base extends Component {
         in_menu: rawItem.in_menu,
         title: rawItem.title,
         subtitle: rawItem.subtitle,
+        intro: rawItem.intro,
+        content: rawItem.content,
         page_type: rawItem.page_type,
         background_image: rawItem.background_image
       };
@@ -170,11 +173,19 @@ export default class Base extends Component {
   getPages() {
     const { pages } = this.state;
     return pages.map((page) => {
-      const { id } = page;
+      const { id, page_type } = page;
 
-      return (
-        <MainIntro ref={(ref) => this.pages[id] = ref} {...page} key={id} />
-      )
+      switch (page_type) {
+        case 'main_intro':
+          return (
+            <MainIntro ref={(ref) => this.pages[id] = ref} {...page} key={id} />
+          );
+          break;
+        case 'chapter_intro':
+          return (
+            <ChapterIntro ref={(ref) => this.pages[id] = ref} {...page} key={id} />
+          )
+      }
     });
   }
 
