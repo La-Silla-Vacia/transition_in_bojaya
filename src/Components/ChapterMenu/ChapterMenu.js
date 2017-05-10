@@ -31,9 +31,9 @@ export default class ChapterMenu extends Component {
     const { items } = this.props;
     return items.map((item, index) => {
       const number = index + 1;
-      const { title, id } = item;
+      const { title, id, current } = item;
       return (
-        <li className={s.item} onClick={this.handleClick.bind(this, id)}>
+        <li className={cx(s.item, {[s.current]: current})} onClick={this.handleClick.bind(this, id)} key={id}>
           <span className={s.number}>0{number}</span>
           <a href={`#page-${id}`} className={s.link}>{title}</a>
         </li>

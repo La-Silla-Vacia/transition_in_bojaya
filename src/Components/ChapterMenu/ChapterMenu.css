@@ -49,6 +49,10 @@
   }
 }
 
+.current {
+  background: red;
+}
+
 .number {
   font-family: map(fonts, family-serif);
   display: block;

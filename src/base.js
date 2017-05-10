@@ -14,7 +14,11 @@ export default class Base extends Component {
     this.state = {
       pages: [],
       menuItems: [],
-      height: 600
+      height: 600,
+      width: 600,
+      halfWidth: 300,
+      currentPage: false,
+      smallHeader: false
     };
 
     this.pages = [];
@@ -39,21 +43,71 @@ export default class Base extends Component {
     });
   }
 
+  componentDidUpdate() {
+    this.checkActivePage()
+  }
+
   scroll(event) {
     if (this.pagesRoot) {
       event.preventDefault();
       const element = this.pagesRoot;
       element.scrollLeft += event.deltaY;
       element.scrollLeft += event.deltaX;
+
+      this.checkActivePage();
     }
   }
 
+  checkActivePage() {
+    const { halfWidth, currentPage, menuItems, smallHeader } = this.state;
+
+    this.pages.map((page) => {
+      const offsetLeft = page.base.getBoundingClientRect().left;
+      if (offsetLeft > -halfWidth && offsetLeft < halfWidth) {
+        const current = page.props.id;
+        const newItems = [];
+        if (currentPage !== current) {
+          menuItems.map((item) => {
+            item.current = item.id === current;
+            newItems.push(item);
+          });
+
+          if (current > 1 && !smallHeader) {
+            this.updateHeader();
+          } else if (current <= 1 && smallHeader) {
+            this.updateHeader();
+          }
+          this.setState({ currentPage: current, menuItems: newItems });
+        }
+      }
+    })
+  }
+
+  updateHeader() {
+    const { smallHeader } = this.state;
+    const headerElement = document.querySelector('#header');
+    if (!headerElement) return;
+    this.setState({ smallHeader: !smallHeader });
+    if (smallHeader) {
+      headerElement.classList.remove('header--compact');
+    } else {
+      headerElement.classList.add('header--compact');
+    }
+
+    setTimeout(() => {
+      this.updateDimensions()
+    }, 1000);
+  }
+
   updateDimensions() {
+    const { smallHeader } = this.state;
     const header = document.querySelector('#header');
+    const navbarCollapse = document.querySelector('#navbarCollapse');
     const windowHeight = window.innerHeight;
-    const headerHeight = (header) ? header.offsetHeight : 0;
+    const windowWidth = window.innerWidth;
+    const headerHeight = (smallHeader) ? ((navbarCollapse) ? navbarCollapse.offsetHeight : 0) : ((header) ? header.offsetHeight : 0);
     const interactiveHeight = windowHeight - headerHeight;
-    this.setState({ height: interactiveHeight });
+    this.setState({ height: interactiveHeight, width: windowWidth, halfWidth: windowWidth / 2 });
   }
 
   setData() {

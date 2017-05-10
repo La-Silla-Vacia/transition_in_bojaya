@@ -31,7 +31,7 @@ html, body {
   position: absolute;
   z-index: 40;
   width: 100%;
-  background: rgba(25,25,25,.4);
+  background: rgba(25, 25, 25, .4);
   top: 0;
   margin-top: 0;
   padding: 0 1em;
@@ -115,4 +115,23 @@ html body.admin-menu {
   #header {
     height: 47px;
   }
+}
+
+#header {
+  transition: 1s;
+}
+
+#header .navbar-header {
+  transition: 1s, height 1s 2s;
+  overflow: hidden;
+
+}
+
+#header.header--compact .navbar-header {
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+#header.header--compact {
+  margin-top: -88px;
 }
