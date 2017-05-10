@@ -9,12 +9,35 @@ export default class Base extends Component {
     super();
 
     this.state = {
-      data: []
-    }
+      data: [],
+      height: 600
+    };
+
+    this.updateDimensions = this.updateDimensions.bind(this);
   }
 
   componentWillMount() {
     this.setData();
+    this.updateDimensions();
+  }
+
+  componentDidMount() {
+    let resizeTimer;
+    window.addEventListener('resize', (e) => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        this.updateDimensions()
+      }, 250);
+    });
+  }
+
+  updateDimensions() {
+    const header = document.querySelector('#header');
+    const windowHeight = window.innerHeight;
+    const headerHeight = (header) ? header.offsetHeight : 0;
+    const interactiveHeight = windowHeight - headerHeight;
+    this.setState({ height: interactiveHeight });
+    console.log(headerHeight);
   }
 
   setData() {
@@ -31,7 +54,7 @@ export default class Base extends Component {
     }
 
     if (!dataExists) {
-      this.setState({data: data});
+      this.setState({ data: data });
     } else {
       if (interactiveData.dataUri) {
         dataUri = interactiveData.dataUri;
@@ -44,7 +67,7 @@ export default class Base extends Component {
     fetch(uri)
       .then((response) => {
         return response.json()
-    }).then((json) => {
+      }).then((json) => {
       this.setState({ data: json });
     }).catch((ex) => {
       console.log('parsing failed', ex)
@@ -52,8 +75,14 @@ export default class Base extends Component {
   }
 
   render(props, state) {
-    return(
-      <div className={s.container}>
+    const { height } = state;
+
+    const style = {
+      height
+    };
+
+    return (
+      <div className={s.container} style={style}>
         Hello transition_in_bojaya!
       </div>
     )
