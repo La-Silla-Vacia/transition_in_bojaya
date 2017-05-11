@@ -1,11 +1,21 @@
 .title {
-  top: 40%;
+  top: 48%;
+  width: 70%;
+  margin: 0;
+  position: absolute;
+  transform: translateY(-50%);
+
+  & .subTitle {
+    font-size: 1.35em;
+    font-weight: 300;
+  }
 }
 
 .intro {
-  position: absolute;
-  bottom: 5em;
-  right: 2em;
-  max-width: 45em;
-  text-align: right;
+  display: none;
+
+  & p {
+    font-weight: 300;
+    max-width: 35em;
+  }
 }

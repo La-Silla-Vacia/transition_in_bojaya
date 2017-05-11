@@ -8,7 +8,7 @@
   max-width: 100rem;
   column-count: 2;
   position: absolute;
-  bottom: 9rem;
+  bottom: 2rem;
 
   & p {
     font-size: 16px;

@@ -37,7 +37,9 @@ html, body {
   padding: 0 1em;
 }
 
-.article-main-body > .field-name-body > .field-items > .field-item.even > p {
+.article-main-body > .field-name-body > .field-items > .field-item.even > p,
+#footer,
+#comments {
   display: none;
 }
 

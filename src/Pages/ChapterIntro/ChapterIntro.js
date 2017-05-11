@@ -3,8 +3,6 @@ import cx from 'classnames';
 const MarkdownIt = require('markdown-it'),
   md = new MarkdownIt();
 
-import FadeIn from '../../Components/FadeIn';
-
 import p from '../Pages.css';
 import t from '../Typography.css';
 import s from './ChapterIntro.css';
@@ -12,7 +10,7 @@ import s from './ChapterIntro.css';
 export default class ChapterIntro extends Component {
 
   render(props, state) {
-    const { id, title, subtitle, intro, content, background_image } = props;
+    const { id, title, subtitle, intro, content, background_image, children } = props;
 
     const style = {
       backgroundImage: `url(${background_image})`
@@ -29,6 +27,7 @@ export default class ChapterIntro extends Component {
           </div>
           <div className={s.content} dangerouslySetInnerHTML={{__html: md.render(String(content))}} />
         </div>
+        {children}
       </div>
     )
   }

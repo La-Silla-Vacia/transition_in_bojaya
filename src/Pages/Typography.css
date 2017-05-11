@@ -3,12 +3,11 @@
 }
 
 .mainTitle {
-  font-size: 4em;
   font-weight: bold;
-  text-align: center;
-  margin: 0;
-}
-
-.subTitle {
-  font-size: 1.35em;
+  margin: 0 0 2rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14vw;
+  text-shadow: 0 0 10px rgba(0, 0, 0, .3);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
 }

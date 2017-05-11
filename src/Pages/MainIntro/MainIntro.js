@@ -12,7 +12,7 @@ import s from './MainIntro.css';
 export default class MainIntro extends Component {
 
   render(props, state) {
-    const { id, title, subtitle, intro, background_image } = props;
+    const { id, title, subtitle, intro, background_image, children } = props;
 
     const style = {
       backgroundImage: `url(${background_image})`
@@ -22,13 +22,13 @@ export default class MainIntro extends Component {
       <div id={`page-${id}`} className={cx(p.container, s.container)}>
         <div className={cx(p.background, p.background__animated)} style={style} />
         <div className={p.inner}>
-          <FadeIn className={cx(p.center, t.shadow, s.title)}>
+          <FadeIn className={cx(t.shadow, s.title)}>
             <h1 className={t.mainTitle}>{ title }</h1>
-            <span className={t.subTitle}>{subtitle}</span>
+            <p className={s.subTitle}>{subtitle}</p>
+            <div className={s.intro}><p>{intro}</p></div>
           </FadeIn>
-
-          <div className={s.intro} dangerouslySetInnerHTML={{ __html: md.render(String(intro)) }} />
         </div>
+        {children}
       </div>
     )
   }

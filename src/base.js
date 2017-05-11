@@ -3,6 +3,7 @@ import { h, render, Component } from 'preact';
 import MainIntro from './Pages/MainIntro';
 import ChapterIntro from './Pages/ChapterIntro';
 import ChapterMenu from './Components/ChapterMenu';
+import Arrow from './Components/Arrow';
 
 import s from './base.css';
 const data = require('../data/data.json');
@@ -172,18 +173,32 @@ export default class Base extends Component {
 
   getPages() {
     const { pages } = this.state;
-    return pages.map((page) => {
+    return pages.map((page, index) => {
       const { id, page_type } = page;
+
+      let prev, next;
+      if (pages[index - 1]) {
+        prev = pages[index - 1].id
+      }
+      if (pages[index + 1]) {
+        next = pages[index + 1].id
+      }
 
       switch (page_type) {
         case 'main_intro':
           return (
-            <MainIntro ref={(ref) => this.pages[id] = ref} {...page} key={id} />
+            <MainIntro ref={(ref) => this.pages[id] = ref} {...page} key={id}>
+              <Arrow to={prev} direction="prev" callback={this.goToPage} />
+              <Arrow to={next} direction="next" callback={this.goToPage} />
+            </MainIntro>
           );
           break;
         case 'chapter_intro':
           return (
-            <ChapterIntro ref={(ref) => this.pages[id] = ref} {...page} key={id} />
+            <ChapterIntro ref={(ref) => this.pages[id] = ref} {...page} key={id}>
+              <Arrow to={prev} direction="prev" callback={this.goToPage} />
+              <Arrow to={next} direction="next" callback={this.goToPage} />
+            </ChapterIntro>
           )
       }
     });
