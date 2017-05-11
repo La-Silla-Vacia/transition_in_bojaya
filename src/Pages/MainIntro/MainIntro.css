@@ -1,9 +1,8 @@
 .title {
-  top: 48%;
+  bottom: 7em;
   width: 70%;
   margin: 0;
   position: absolute;
-  transform: translateY(-50%);
 
   & .subTitle {
     font-size: 1.35em;

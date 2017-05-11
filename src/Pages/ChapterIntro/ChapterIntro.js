@@ -16,16 +16,20 @@ export default class ChapterIntro extends Component {
       backgroundImage: `url(${background_image})`
     };
 
+    const formattedIntro = (intro) ? md.render(String(intro)) : false;
+    const formattedContent = (content) ? md.render(String(content)) : false;
     return (
       <div id={`page-${id}`} className={cx(p.container, s.container)}>
-        <div className={cx(p.background)} style={style} />
+        <div className={cx(p.background, s.background)} style={style} />
         <div className={p.inner}>
-          <div className={s.intro}>
-            <h2 className={s.title}>{ title }</h2>
-            <span className={t.subTitle}>{subtitle}</span>
-            <div dangerouslySetInnerHTML={{__html: md.render(String(intro))}} />
+          <div className={p.inner_container}>
+            <div className={s.intro}>
+              <h2 className={s.title}>{ title }</h2>
+              <span className={t.subTitle}>{subtitle}</span>
+              <div dangerouslySetInnerHTML={{ __html: formattedIntro }} />
+            </div>
+            <div className={s.content} dangerouslySetInnerHTML={{ __html: formattedContent }} />
           </div>
-          <div className={s.content} dangerouslySetInnerHTML={{__html: md.render(String(content))}} />
         </div>
         {children}
       </div>

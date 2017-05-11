@@ -96,9 +96,12 @@ export default class Base extends Component {
       headerElement.classList.add('header--compact');
     }
 
-    setTimeout(() => {
+    const interval = setInterval(() => {
       this.updateDimensions()
-    }, 500);
+    }, 10);
+    setTimeout(() => {
+      clearInterval(interval);
+    }, 550);
   }
 
   updateDimensions() {
@@ -163,6 +166,8 @@ export default class Base extends Component {
         page_type: rawItem.page_type,
         background_image: rawItem.background_image
       };
+
+      console.log(item);
 
       if (!item.hidden) pages.push(item);
       if (!item.hidden && item.in_menu) menuItems.push(item);
