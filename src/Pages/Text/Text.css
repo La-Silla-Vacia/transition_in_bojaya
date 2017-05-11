@@ -17,9 +17,10 @@
 
 .content {
   float: left;
-  max-width: 30em;
-  margin-left: 4em;
+  max-width: 70em;
   font-size: 1.2em;
+  column-count: 2;
+  column-gap: 2em;
 
   & p {
     font-size: 1.2em;

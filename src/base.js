@@ -2,6 +2,8 @@ import { h, render, Component } from 'preact';
 
 import MainIntro from './Pages/MainIntro';
 import ChapterIntro from './Pages/ChapterIntro';
+import Text from './Pages/Text';
+
 import ChapterMenu from './Components/ChapterMenu';
 import Arrow from './Components/Arrow';
 
@@ -204,6 +206,14 @@ export default class Base extends Component {
               <Arrow to={prev} direction="prev" callback={this.goToPage} />
               <Arrow to={next} direction="next" callback={this.goToPage} />
             </ChapterIntro>
+          );
+          break;
+        case 'text':
+          return (
+            <Text ref={(ref) => this.pages[id] = ref} {...page} key={id}>
+              <Arrow to={prev} direction="prev" callback={this.goToPage} />
+              <Arrow to={next} direction="next" callback={this.goToPage} />
+            </Text>
           )
       }
     });
@@ -214,10 +224,7 @@ export default class Base extends Component {
     const pageRef = this.pages[id];
     if (pageRef) {
       const element = pageRef.base;
-      const scrollOffset = element.getBoundingClientRect().left;
-
       const offset = element.offsetLeft;
-      // this.pagesRoot.scrollLeft = offset;
 
       this.pagesRoot.classList.add(s.opacity0);
       setTimeout(() => {
@@ -227,20 +234,6 @@ export default class Base extends Component {
       setTimeout(() => {
         this.pagesRoot.classList.remove(s.opacity0);
       }, 500);
-      // let value = -1;
-      // if (scrollOffset > 0) {
-      //   value = 1;
-      // }
-      //
-      // for (let i = 0; i < Math.abs(scrollOffset); i++) {
-      //   setTimeout(() => {
-      //     this.pagesRoot.scrollLeft += value;
-      //   }, 0.5 * i);
-      //
-      //   setTimeout(() => {
-      //     this.checkActivePage();
-      //   }, Math.abs(scrollOffset) / 2)
-      // }
     }
   }
 
