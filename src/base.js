@@ -97,7 +97,7 @@ export default class Base extends Component {
 
     setTimeout(() => {
       this.updateDimensions()
-    }, 1000);
+    }, 500);
   }
 
   updateDimensions() {
@@ -196,16 +196,31 @@ export default class Base extends Component {
       const element = pageRef.base;
       const scrollOffset = element.getBoundingClientRect().left;
 
-      let value = -1;
-      if (scrollOffset > 0) {
-        value = 1;
-      }
+      const offset = element.offsetLeft;
+      // this.pagesRoot.scrollLeft = offset;
 
-      for (let i = 0; i < Math.abs(scrollOffset); i++) {
-        setTimeout(() => {
-          this.pagesRoot.scrollLeft += value;
-        }, 0.5 * i);
-      }
+      this.pagesRoot.classList.add(s.opacity0);
+      setTimeout(() => {
+        this.pagesRoot.scrollLeft = offset;
+        this.checkActivePage();
+      }, 500);
+      setTimeout(() => {
+        this.pagesRoot.classList.remove(s.opacity0);
+      }, 500);
+      // let value = -1;
+      // if (scrollOffset > 0) {
+      //   value = 1;
+      // }
+      //
+      // for (let i = 0; i < Math.abs(scrollOffset); i++) {
+      //   setTimeout(() => {
+      //     this.pagesRoot.scrollLeft += value;
+      //   }, 0.5 * i);
+      //
+      //   setTimeout(() => {
+      //     this.checkActivePage();
+      //   }, Math.abs(scrollOffset) / 2)
+      // }
     }
   }
 

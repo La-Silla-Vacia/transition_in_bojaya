@@ -119,11 +119,11 @@ html body.admin-menu {
 
 @media screen and (min-width: 992px) {
   #header {
-    transition: 1s;
+    transition: .5s;
   }
 
   #header .navbar-header {
-    transition: 1s, height 1s 2s;
+    transition: .5s, height .5s 2s;
     overflow: hidden;
 
   }

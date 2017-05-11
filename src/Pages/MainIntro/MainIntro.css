@@ -1,2 +1,11 @@
-.container {
+.title {
+  top: 40%;
+}
+
+.intro {
+  position: absolute;
+  bottom: 5em;
+  right: 2em;
+  max-width: 45em;
+  text-align: right;
 }
