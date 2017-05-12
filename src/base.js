@@ -187,40 +187,48 @@ export default class Base extends Component {
   }
 
   getPages() {
-    const { pages } = this.state;
+    const { pages, width } = this.state;
     return pages.map((page, index) => {
       const { id, page_type } = page;
 
       let prev, next;
       if (pages[index - 1]) {
-        prev = pages[index - 1].id
+        // console.log(pages[index - 1].title, page.title);
+        prev = pages[index - 1].id;
       }
       if (pages[index + 1]) {
-        next = pages[index + 1].id
+        next = pages[index + 1].id;
+      }
+
+      let arrowLeft, arrowRight;
+      if (width > 992) {
+        arrowLeft = (
+          <Arrow to={prev} direction="prev" callback={this.goToPage} />
+        );
+        arrowRight = (
+          <Arrow to={next} direction="next" callback={this.goToPage} />
+        );
       }
 
       switch (page_type) {
         case 'main_intro':
           return (
             <MainIntro ref={(ref) => this.pages[index] = ref} {...page} key={id}>
-              <Arrow to={prev} direction="prev" callback={this.goToPage} />
-              <Arrow to={next} direction="next" callback={this.goToPage} />
+              {arrowLeft}{arrowRight}
             </MainIntro>
           );
           break;
         case 'chapter_intro':
           return (
             <ChapterIntro ref={(ref) => this.pages[index] = ref} {...page} key={id}>
-              <Arrow to={prev} direction="prev" callback={this.goToPage} />
-              <Arrow to={next} direction="next" callback={this.goToPage} />
+              {arrowLeft}{arrowRight}
             </ChapterIntro>
           );
           break;
         case 'text':
           return (
             <Text ref={(ref) => this.pages[index] = ref} {...page} key={id}>
-              <Arrow to={prev} direction="prev" callback={this.goToPage} />
-              <Arrow to={next} direction="next" callback={this.goToPage} />
+              {arrowLeft}{arrowRight}
             </Text>
           )
       }
@@ -228,20 +236,39 @@ export default class Base extends Component {
   }
 
   goToPage(id) {
-    // Check if the page exists
-    const pageRef = this.pages[id];
+    const { width } = this.state;
+    let pageRef;
+    this.pages.map((page) => {
+      if (page.props.id === id) pageRef = page;
+    });
+
     if (pageRef) {
       const element = pageRef.base;
-      const offset = element.offsetLeft;
 
-      this.pagesRoot.classList.add(s.opacity0);
-      setTimeout(() => {
-        this.pagesRoot.scrollLeft = offset;
-        this.checkActivePage();
-      }, 500);
-      setTimeout(() => {
-        this.pagesRoot.classList.remove(s.opacity0);
-      }, 500);
+      if (width > 992) {
+        const offset = element.offsetLeft;
+
+        this.pagesRoot.classList.add(s.opacity0);
+        setTimeout(() => {
+          this.pagesRoot.scrollLeft = offset;
+          this.checkActivePage();
+        }, 500);
+        setTimeout(() => {
+          this.pagesRoot.classList.remove(s.opacity0);
+        }, 500);
+      } else {
+        const header = document.querySelector('#header');
+        const headerHeight = (header) ? header.offsetHeight : 0;
+        const offset = element.offsetTop + headerHeight;
+        this.pagesRoot.classList.add(s.opacity0);
+        setTimeout(() => {
+          document.body.scrollTop = offset;
+          this.checkActivePage();
+        }, 500);
+        setTimeout(() => {
+          this.pagesRoot.classList.remove(s.opacity0);
+        }, 500);
+      }
     }
   }
 

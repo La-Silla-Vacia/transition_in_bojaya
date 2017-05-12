@@ -10,18 +10,7 @@
   color: #fff;
   transition: transform .5s;
 
-  &::before {
-    content: '▲';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    font-size: .8em;
-    transform: translateX(-50%);
-    opacity: 0;
-    transition: opacity .5s;
-  }
-
-  @media only screen and (max-width: 40em) {
+  @media only screen and (max-width: 992px) {
     background-color: rgba(0, 0, 0, .8);
     padding: 1em 1em 0.5em;
     position: fixed;
@@ -29,10 +18,7 @@
 }
 
 .hidden {
-  transform: translateY(80%);
-  &::before {
-    opacity: 1;
-  }
+  transform: translateX(100%);
 }
 
 .show {
@@ -44,11 +30,21 @@
   padding: 0;
   display: flex;
 
-  @media only screen and (max-width: 40em) {
+  @media only screen and (max-width: 992px) {
     flex-wrap: wrap;
     width: 100%;
     margin-bottom: 0;
   }
+}
+
+.close_icon {
+  max-width: 0.75em;
+  margin-bottom: 0.25em;
+  transition: opacity .3s ease;
+}
+
+.cross {
+  fill: #fff;
 }
 
 .item {
@@ -57,21 +53,32 @@
   padding-right: 2em;
   border-right: 1px solid rgba(255, 255, 255, .5);
 
+  & a {
+    &:hover,
+    &:focus {
+      color:  #fff;
+      text-decoration: none;
+    }
+  }
+
   &:last-child {
     border: 0;
   }
 
   &__close {
     display: none;
+    transition: 0.4s;
+    background: transparent;
   }
 
-  @media only screen and (max-width: 40em) {
+  @media only screen and (max-width: 992px) {
     margin-right: 0;
     margin-bottom: 0.25em;
     padding-bottom: 0.25em;
     border-bottom: 1px dashed rgba(255, 255, 255, .5);
     border-right: 1px dashed rgba(255, 255, 255, .5);
     width: 33.3334%;
+    padding-right: 0;
     padding-left: 0.5em;
 
     &:first-child,
@@ -83,16 +90,24 @@
       border-right: 0;
     }
 
-    &:nth-child(4) {
+    &:nth-child(4),
+    &:nth-child(5) {
       border-bottom: 0;
     }
 
-    &:last-child {
+    &:last-child:not(&__close) {
       border-right: 1px dashed rgba(255, 255, 255, .5);
     }
 
     &__close {
-      display: block;
+      display: flex;
+      flex-direction: column;
+      padding-top: 0.25em;
+      position: fixed;
+      right: 1.5em;
+      bottom: 0.5em;
+      z-index: 100;
+      width: calc((100% / 3) - 1em);
     }
   }
 
@@ -105,6 +120,11 @@
     background-color: #fff;
     left: 0;
     transition: width .25s;
+
+    @media only screen and (max-width: 992px) {
+      bottom: 0.2em;
+      left: 0.5em;
+    }
   }
 
   &:hover,
@@ -118,6 +138,15 @@
     &::after {
       width: calc(100% - 2em);
     }
+  }
+}
+
+.button__hidden {
+  right: 0;
+  width: 4.5em;
+
+  & .close_icon {
+    opacity: 0;
   }
 }
 
