@@ -1,0 +1,81 @@
+.container {
+  display: flex;
+}
+
+.button,
+.replay {
+  width: 5em;
+  height: 5em;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  border-radius: 50%;
+
+  &:hover {
+    & .play,
+    & .pause {
+      transform: scale(1.2);
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.icon {
+  display: block;
+}
+
+.circle {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3.0591;
+  stroke-miterlimit: 10;
+}
+
+.shape {
+  fill: #fff;
+}
+
+.play,
+.pause {
+  transform-origin: center;
+  transition: .3s ease;
+}
+
+.pause {
+  opacity: 0;
+  transform: scale(0.2);
+}
+
+.playing {
+  & .play {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+
+  & .pause {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.replay {
+  width: 1.25em;
+  height: 1.25em;
+  opacity: 0.5;
+  transition: opacity .3s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.title {
+  color: #fff;
+  font-family: Georgia, serif;
+  font-style: italic;
+  align-self: center;
+  margin-bottom: 1em;
+}

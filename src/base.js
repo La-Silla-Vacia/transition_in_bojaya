@@ -42,7 +42,8 @@ export default class Base extends Component {
     window.addEventListener('resize', (e) => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        this.updateDimensions()
+        this.updateDimensions();
+        this.checkActivePage();
       }, 250);
     });
   }
@@ -65,16 +66,21 @@ export default class Base extends Component {
 
   checkActivePage() {
     const { halfWidth, currentPage, menuItems, smallHeader, width } = this.state;
+    let menuItem = false;
 
     if (width < 992) return;
     this.pages.map((page) => {
       const offsetLeft = page.base.getBoundingClientRect().left;
+      if (page.props.in_menu) menuItem = page.props.id;
+
       if (offsetLeft > -halfWidth && offsetLeft < halfWidth) {
         const current = page.props.id;
+        if (current === menuItem) menuItem = current;
         const newItems = [];
+        // console.log(page);
         if (currentPage !== current) {
           menuItems.map((item) => {
-            item.current = item.id === current;
+            item.current = item.id === menuItem;
             newItems.push(item);
           });
 
@@ -196,7 +202,7 @@ export default class Base extends Component {
       switch (page_type) {
         case 'main_intro':
           return (
-            <MainIntro ref={(ref) => this.pages[id] = ref} {...page} key={id}>
+            <MainIntro ref={(ref) => this.pages[index] = ref} {...page} key={id}>
               <Arrow to={prev} direction="prev" callback={this.goToPage} />
               <Arrow to={next} direction="next" callback={this.goToPage} />
             </MainIntro>
@@ -204,7 +210,7 @@ export default class Base extends Component {
           break;
         case 'chapter_intro':
           return (
-            <ChapterIntro ref={(ref) => this.pages[id] = ref} {...page} key={id}>
+            <ChapterIntro ref={(ref) => this.pages[index] = ref} {...page} key={id}>
               <Arrow to={prev} direction="prev" callback={this.goToPage} />
               <Arrow to={next} direction="next" callback={this.goToPage} />
             </ChapterIntro>
@@ -212,7 +218,7 @@ export default class Base extends Component {
           break;
         case 'text':
           return (
-            <Text ref={(ref) => this.pages[id] = ref} {...page} key={id}>
+            <Text ref={(ref) => this.pages[index] = ref} {...page} key={id}>
               <Arrow to={prev} direction="prev" callback={this.goToPage} />
               <Arrow to={next} direction="next" callback={this.goToPage} />
             </Text>

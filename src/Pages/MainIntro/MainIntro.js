@@ -4,6 +4,7 @@ const MarkdownIt = require('markdown-it'),
   md = new MarkdownIt();
 
 import FadeIn from '../../Components/FadeIn';
+import AudioPlayer from '../../Components/AudioPlayer';
 
 import p from '../Pages.css';
 import s from './MainIntro.css';
@@ -23,6 +24,7 @@ export default class MainIntro extends Component {
         <div className={p.inner}>
           <FadeIn className={s.title}>
             <h1 className={s.mainTitle}>{ title }</h1>
+            <AudioPlayer />
             <p className={s.subTitle}>{subtitle}</p>
             <div className={s.intro}><p>{intro}</p></div>
           </FadeIn>
