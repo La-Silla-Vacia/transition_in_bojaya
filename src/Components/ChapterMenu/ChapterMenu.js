@@ -35,8 +35,12 @@ export default class ChapterMenu extends Component {
 
   handleClick(id, e) {
     e.preventDefault();
+    const { width } = this.props;
     const { openMenuItem } = this.props;
     openMenuItem(id);
+    if (width < 992) {
+      this.setState({ hidden: false });
+    }
   }
 
   getItems() {
@@ -47,7 +51,7 @@ export default class ChapterMenu extends Component {
       return (
         <li className={cx(s.item, { [s.current]: current })} onClick={this.handleClick.bind(this, id)} key={id}>
           <span className={s.number}>0{number}</span>
-          <a href={`#page-${id}`} className={s.link}>{in_menu}</a>
+          <a className={s.link}>{in_menu}</a>
         </li>
       )
     });
@@ -70,7 +74,7 @@ export default class ChapterMenu extends Component {
     const { className } = props;
     const items = this.getItems();
 
-    let buttonText = (hidden) ? 'menú' : 'Cerrar';
+    let buttonText = (hidden) ? 'Cerrar' : 'Menú';
 
     return (
       <div>
@@ -81,13 +85,14 @@ export default class ChapterMenu extends Component {
             { items }
           </ul>
         </nav>
-        <button className={cx(s.item, s.item__close, {[s.button__hidden]: hidden})} onClick={this.toggleNav.bind(this)}>
+        <button className={cx(s.item, s.item__close, { [s.button__hidden]: hidden })}
+                onClick={this.toggleNav.bind(this)}>
           <svg className={s.close_icon} x="0" y="0" viewBox="0 0 100 100">
             <path className={s.cross} d="M98.9,2.4c-1.3-1.3-3.4-1.3-4.5,0L50.6,45.5L5.6,1C4.3-0.3,2.3-0.3,1.1,1c-1.3,1.3-1.3,3.3,0,4.5L46,50L1,94.6
 	c-1.3,1.3-1.3,3.3,0,4.5c0.6,0.6,1.4,0.9,2.3,0.9s1.7-0.3,2.3-0.9l45.1-44.6l43.6,43.2c0.6,0.6,1.4,0.9,2.3,0.9
 	c0.9,0,1.7-0.3,2.3-0.9c1.3-1.3,1.3-3.3,0-4.5L55.2,50L98.9,6.9C100.1,5.6,100.1,3.5,98.9,2.4L98.9,2.4z" />
           </svg>
-          <a href="#" className={s.link}>{buttonText}</a>
+          <a className={s.link}>{buttonText}</a>
         </button>
       </div>
     )

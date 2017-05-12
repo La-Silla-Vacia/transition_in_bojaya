@@ -14,11 +14,12 @@
     background-color: rgba(0, 0, 0, .8);
     padding: 1em 1em 0.5em;
     position: fixed;
+    transform: translateX(100%);
   }
 }
 
 .hidden {
-  transform: translateX(100%);
+  transform: translateX(0);
 }
 
 .show {
@@ -41,6 +42,7 @@
   max-width: 0.75em;
   margin-bottom: 0.25em;
   transition: opacity .3s ease;
+  opacity: 0;
 }
 
 .cross {
@@ -104,10 +106,10 @@
       flex-direction: column;
       padding-top: 0.25em;
       position: fixed;
-      right: 1.5em;
+      right: 0;
       bottom: 0.5em;
       z-index: 100;
-      width: calc((100% / 3) - 1em);
+      width: 4.5em;
     }
   }
 
@@ -142,11 +144,11 @@
 }
 
 .button__hidden {
-  right: 0;
-  width: 4.5em;
+  right: 1.5em;
+  width: calc((100% / 3) - 1em);
 
   & .close_icon {
-    opacity: 0;
+    opacity: 1;
   }
 }
 

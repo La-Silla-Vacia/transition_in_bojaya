@@ -70,7 +70,7 @@ export default class Arrow extends Component {
           </button>
         </div>
         <div className={s.title}>
-          Listen to the music of the 15th aniversary
+          Escucha el audio del aniversario número 15
         </div>
       </div>
     )
