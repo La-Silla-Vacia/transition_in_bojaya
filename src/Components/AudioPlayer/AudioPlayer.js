@@ -22,7 +22,7 @@ export default class Arrow extends Component {
 
   play() {
     // start music
-    const music = this.music;
+    const music = document.querySelector('#music');
     if (music.paused) {
       music.play();
       // remove play, add pause
@@ -35,10 +35,12 @@ export default class Arrow extends Component {
   }
 
   handleReplay() {
-    const music = this.music;
-    music.currentTime = 0;
-    music.play();
-    this.setState({ playing: true });
+    const music = document.querySelector('#music');
+    if (music) {
+      music.currentTime = 0;
+      music.play();
+      this.setState({ playing: true });
+    }
   }
 
   render(props, state) {
