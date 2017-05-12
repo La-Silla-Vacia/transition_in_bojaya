@@ -6,7 +6,7 @@
   z-index: 20;
   background-color: rgba(0, 0, 0, .5);
   display: flex;
-  padding: 1em 2em;
+  padding: 0;
   color: #fff;
   transition: transform .5s;
 
@@ -29,6 +29,7 @@
 .list {
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
 
   @media only screen and (max-width: 992px) {
@@ -51,9 +52,8 @@
 
 .item {
   position: relative;
-  margin-right: 2em;
-  padding-right: 2em;
   border-right: 1px solid rgba(255, 255, 255, .5);
+  padding: 1em 2em;
 
   & a {
     &:hover,
@@ -130,8 +130,7 @@
   }
 
   &:hover,
-  &:focus,
-  &.current {
+  &:focus {
     & a {
       text-decoration: none;
       color: #fff;
@@ -140,6 +139,18 @@
     &::after {
       width: calc(100% - 2em);
     }
+  }
+}
+
+.current {
+  background-color: #fff;
+  color: #000;
+
+  & a {
+    &:hover, &:focus {
+      color: #000;
+    }
+    color: #000;
   }
 }
 
