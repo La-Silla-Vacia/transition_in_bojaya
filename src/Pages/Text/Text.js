@@ -4,7 +4,6 @@ const MarkdownIt = require('markdown-it'),
   md = new MarkdownIt();
 
 import p from '../Pages.css';
-import t from '../Typography.css';
 import s from './Text.css';
 
 export default class Text extends Component {

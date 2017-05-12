@@ -61,11 +61,14 @@ export default class ChapterMenu extends Component {
     this.setState({ hidden: true });
   }
 
+  toggleNav() {
+    this.setState({hidden: !this.state.hidden});
+  }
+
   render(props, state) {
     let { show, hidden, current } = state;
-    const { children, className } = props;
+    const { className } = props;
     if (current === 1) hidden = false;
-    console.log(current);
     const items = this.getItems();
 
     return (
@@ -76,6 +79,10 @@ export default class ChapterMenu extends Component {
       >
         <ul className={s.list}>
           { items }
+          <li className={cx(s.item, s.item__close)} onClick={this.toggleNav.bind(this)}>
+            <span className={s.number}>0</span>
+            <a href="#" className={s.link}>cerrar el  menú</a>
+          </li>
         </ul>
       </nav>
     )

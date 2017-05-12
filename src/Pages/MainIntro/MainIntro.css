@@ -9,7 +9,22 @@
     font-weight: 300;
     max-width: 44em;
   }
+
+  @media only screen and (max-width: 40em) {
+    bottom: 13.5em;
+    position: relative;
+
+    & .subTitle {
+      font-size: 16px !important
+    }
+  }
 }
+
+.mainTitle {
+  margin: 0 0 2rem;
+  font-size: 7vw;
+}
+
 
 .intro {
   display: none;

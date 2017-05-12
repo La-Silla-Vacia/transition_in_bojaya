@@ -52,7 +52,8 @@ export default class Base extends Component {
   }
 
   scroll(event) {
-    if (this.pagesRoot) {
+    const width = this.state.width;
+    if (this.pagesRoot && width > 992) {
       event.preventDefault();
       const element = this.pagesRoot;
       element.scrollLeft += event.deltaY;
@@ -63,8 +64,9 @@ export default class Base extends Component {
   }
 
   checkActivePage() {
-    const { halfWidth, currentPage, menuItems, smallHeader } = this.state;
+    const { halfWidth, currentPage, menuItems, smallHeader, width } = this.state;
 
+    if (width < 992) return;
     this.pages.map((page) => {
       const offsetLeft = page.base.getBoundingClientRect().left;
       if (offsetLeft > -halfWidth && offsetLeft < halfWidth) {
@@ -136,6 +138,8 @@ export default class Base extends Component {
       if (interactiveData.dataUri) {
         dataUri = interactiveData.dataUri;
         this.fetchData(dataUri);
+      } else {
+        this.formatData(data);
       }
     }
   }
@@ -236,12 +240,15 @@ export default class Base extends Component {
   }
 
   render(props, state) {
-    const { height, menuItems } = state;
+    const { height, width, menuItems } = state;
     const pages = this.getPages();
 
-    const style = {
-      height
-    };
+    let style;
+    if (width > 992) {
+      style = {
+        height
+      };
+    }
 
     return (
       <div className={s.container} style={style}>

@@ -6,7 +6,6 @@ const MarkdownIt = require('markdown-it'),
 import FadeIn from '../../Components/FadeIn';
 
 import p from '../Pages.css';
-import t from '../Typography.css';
 import s from './MainIntro.css';
 
 export default class MainIntro extends Component {
@@ -22,8 +21,8 @@ export default class MainIntro extends Component {
       <div id={`page-${id}`} className={cx(p.container, s.container)}>
         <div className={cx(p.background, p.background__animated)} style={style} />
         <div className={p.inner}>
-          <FadeIn className={cx(t.shadow, s.title)}>
-            <h1 className={t.mainTitle}>{ title }</h1>
+          <FadeIn className={s.title}>
+            <h1 className={s.mainTitle}>{ title }</h1>
             <p className={s.subTitle}>{subtitle}</p>
             <div className={s.intro}><p>{intro}</p></div>
           </FadeIn>

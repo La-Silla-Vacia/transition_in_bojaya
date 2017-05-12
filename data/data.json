@@ -12,6 +12,18 @@
     "hidden": false
   },
   {
+    "id": 2,
+    "record_url": "https://fieldbook.com/records/5910c2fd6f6fbc03005269a0",
+    "title": "Esperanza",
+    "subtitle": null,
+    "intro": null,
+    "content": "El cementerio de Bellavista nuevo se inunda cada vez que el Atrato se desborda. \n\nEs una de las pocas zonas de este pueblo joven que todavía sufre los embates del río. Aún así, el agua solo alcanza a meterse en las fosas de dos guerrilleros que cayeron el 2 de mayo y terminaron revueltos con muchas de las demás víctimas en esta parte de Bellavista.",
+    "page_type": "chapter_intro",
+    "background_image": "https://fieldbook.com/attachments/5910c2fc6f6fbc0300526996/f6938602-8fb3-4eb5-9262-7aec8ac62f5c/esperanza1.jpg",
+    "in_menu": "Esperanza",
+    "hidden": false
+  },
+  {
     "id": 3,
     "record_url": "https://fieldbook.com/records/5910c2fd6f6fbc03005269a1",
     "title": "Zozobra",
@@ -89,22 +101,10 @@
     "title": "Desgaste",
     "subtitle": null,
     "intro": null,
-    "content": null,
+    "content": "El pasado 28 de abril, cuatro pangas con capacidad para unos 16 pasajeros cada una atracaron en el puerto del Nuevo Bellavista. Ese día comenzó sin mucho bombo, sin la presencia de las cámaras ni de los chalecos de las Ongs, la Asamblea previa a la conmemoración de los 15 años de la masacre.",
     "page_type": "chapter_intro",
     "background_image": "https://raw.githubusercontent.com/La-Silla-Vacia/transition_in_bojaya/master/data/images/desgaste/10.jpg",
     "in_menu": "Desgaste",
-    "hidden": false
-  },
-  {
-    "id": 2,
-    "record_url": "https://fieldbook.com/records/5910c2fd6f6fbc03005269a0",
-    "title": "Esperanza",
-    "subtitle": null,
-    "intro": null,
-    "content": null,
-    "page_type": "chapter_intro",
-    "background_image": "https://fieldbook.com/attachments/5910c2fc6f6fbc0300526996/f6938602-8fb3-4eb5-9262-7aec8ac62f5c/esperanza1.jpg",
-    "in_menu": "Esperanza",
     "hidden": false
   }
 ]

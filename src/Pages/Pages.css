@@ -8,11 +8,17 @@
   & h2,
   & h3,
   & h4 {
-  //font-family: map(fonts, family-serif); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 900;
+  //font-family: map(fonts, family-serif); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 900;
     text-shadow: 0 0 10px rgba(0, 0, 0, .3);
     line-height: 0.95;
     letter-spacing: -0.05em;
+  }
+
+  @media only screen and (max-width: 992px) {
+    width: 100vw;
+    height: auto;
+    min-height: 100vh;
+    display: flex;
   }
 }
 
@@ -48,6 +54,12 @@
 .inner {
   color: #fff;
   padding: 2em;
+
+  @media only screen and (max-width: 768px) {
+    padding: 1em;
+    display: flex;
+    align-items: flex-end;
+  }
 }
 
 .center {
@@ -64,4 +76,20 @@
   align-items: flex-end;
   width: 100%;
   height: 100%;
+}
+
+.inner {
+  @media only screen and (max-width: 992px) {
+    position: relative;
+    height: auto;
+    min-height: 100%;
+
+    &_container {
+      height: auto;
+      padding: 0;
+      flex-direction: column;
+      justify-content: inherit;
+      align-items: flex-start;
+    }
+  }
 }

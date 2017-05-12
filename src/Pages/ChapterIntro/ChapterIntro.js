@@ -4,7 +4,6 @@ const MarkdownIt = require('markdown-it'),
   md = new MarkdownIt();
 
 import p from '../Pages.css';
-import t from '../Typography.css';
 import s from './ChapterIntro.css';
 
 export default class ChapterIntro extends Component {
@@ -25,7 +24,7 @@ export default class ChapterIntro extends Component {
           <div className={p.inner_container}>
             <div className={s.intro}>
               <h2 className={s.title}>{ title }</h2>
-              <span className={t.subTitle}>{subtitle}</span>
+              <span>{subtitle}</span>
               <div dangerouslySetInnerHTML={{ __html: formattedIntro }} />
             </div>
             <div className={s.content} dangerouslySetInnerHTML={{ __html: formattedContent }} />

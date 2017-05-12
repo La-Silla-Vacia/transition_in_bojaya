@@ -20,6 +20,15 @@
   overflow-x: scroll;
   overflow-y: hidden;
   transition: opacity .5s;
+
+  @media only screen and (max-width: 992px) {
+    display: block;
+    height: inherit;
+    min-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+  }
 }
 
 .opacity0 {
