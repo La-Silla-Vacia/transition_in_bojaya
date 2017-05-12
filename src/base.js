@@ -169,8 +169,6 @@ export default class Base extends Component {
         background_image: rawItem.background_image
       };
 
-      console.log(item);
-
       if (!item.hidden) pages.push(item);
       if (!item.hidden && item.in_menu) menuItems.push(item);
     });

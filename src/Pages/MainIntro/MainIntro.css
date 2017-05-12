@@ -1,18 +1,18 @@
 .title {
   bottom: 7em;
-  width: 60%;
+  width: 100%;
   margin: 0;
   position: absolute;
 
   & .subTitle {
     font-size: 1.35em;
     font-weight: 300;
+    max-width: 44em;
   }
 }
 
 .intro {
   display: none;
-
   & p {
     font-weight: 300;
     max-width: 35em;
