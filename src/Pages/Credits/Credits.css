@@ -4,8 +4,7 @@
 }
 
 .content {
-  float: left;
-  max-width: 30em;
+  max-width: 40em;
   margin-left: 4em;
   font-size: 1.2em;
 
@@ -35,11 +34,20 @@
 .table {
   color: #dcdcdc;
   font-weight: lighter;
+  font-size: .9em;
 
   & td {
+    vertical-align: top;
+
     &:first-child {
       text-align: right;
       padding-right: 1em;
     }
   }
+}
+
+.foottext {
+  font-weight: lighter;
+  color: #dcdcdc;
+
 }
