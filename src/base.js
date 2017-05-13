@@ -39,12 +39,13 @@ export default class Base extends Component {
   }
 
   componentDidMount() {
+    this.checkActivePage();
+
     let resizeTimer;
     window.addEventListener('resize', (e) => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         this.updateDimensions();
-        this.checkActivePage();
       }, 250);
     });
   }

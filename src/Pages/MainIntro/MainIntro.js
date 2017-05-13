@@ -12,7 +12,7 @@ import s from './MainIntro.css';
 export default class MainIntro extends Component {
 
   render(props, state) {
-    const { id, title, subtitle, intro, background_image, children } = props;
+    const { id, title, subtitle, content, background_image, children } = props;
 
     const style = {
       backgroundImage: `url(${background_image})`
@@ -26,7 +26,7 @@ export default class MainIntro extends Component {
             <h1 className={s.mainTitle}>{ title }</h1>
             <AudioPlayer />
             <p className={s.subTitle}>{subtitle}</p>
-            <div className={s.intro}><p>{intro}</p></div>
+            <div className={s.intro}><p>{content}</p></div>
           </FadeIn>
         </div>
         {children}

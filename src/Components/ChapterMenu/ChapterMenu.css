@@ -55,6 +55,10 @@
   border-right: 1px solid rgba(255, 255, 255, .5);
   padding: 1em 2em;
 
+  @media only screen and (max-height: 700px) {
+    padding: 0.5em 2em;
+  }
+
   & a {
     &:hover,
     &:focus {
