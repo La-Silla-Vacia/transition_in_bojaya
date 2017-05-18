@@ -143,6 +143,8 @@ export default class Base extends Component {
       dataExists = false;
     }
 
+    this.setState({ data: data });
+
     if (!dataExists) {
       this.setState({ data: data });
     } else {
